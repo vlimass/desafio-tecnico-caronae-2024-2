@@ -11,7 +11,10 @@ export default {
     extend: {
       colors: {
         blue: '#2B388A',
-        gray: '#464646'
+        gray: '#464646',
+      }, 
+      spacing: {
+        'main': 'calc(100vh - 83px)',
       }
     }
   },

@@ -1,4 +1,5 @@
 import Logo from '../assets/header-logo.svg';
+import { PrimaryButton } from './PrimaryButton';
 
 export function Header() {
   return (
@@ -23,11 +24,7 @@ export function Header() {
         </li>
       </ul>
 
-      <button 
-        className='bg-blue text-white text-sm font-semibold px-4 py-2.5 rounded-lg border border-blue hover:text-blue hover:bg-white transition-all'
-      >
-        Baixe o App
-      </button>
+      <PrimaryButton text='Baixe o App' />
     </header>
   )
 }

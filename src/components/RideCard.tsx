@@ -4,7 +4,7 @@ import Flag from '../assets/flag-icon.svg';
 
 export function RideCard() {
   return (
-    <div className="w-85 shadow-sm border border-[#DFDFDF] rounded-lg px-6 pt-6 pb-4">
+    <div className="w-[21.2rem] shadow-sm border border-[#DFDFDF] rounded-lg px-6 pt-6 pb-4">
       <div className="flex items-center justify-between mb-6">
         <div className='flex items-center gap-2'>
           <img

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Logo from '../assets/home-logo.svg';
-import { FilterButton } from './FilterButton';
-import { SearchFilter } from './SearchFilter';
-import { RideCard } from './RideCard';
+import { FilterButton } from '../components/FilterButton';
+import { SearchFilter } from '../components/SearchFilter';
+import { RideCard } from '../components/RideCard';
 
 export function Home() {
   const [isSelected, setIsSelected] = useState<boolean>(true)
@@ -16,7 +16,7 @@ export function Home() {
   }
 
   return (
-    <main className='min-h-screen flex flex-col mt-[83px]'>
+    <main className='min-h-main flex flex-col mt-[83px]'>
       <div className='bg-blue py-16 flex items-center justify-center'>
         <div className='w-[53%] flex flex-col items-center gap-6'>
           <img 
