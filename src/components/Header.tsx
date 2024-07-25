@@ -2,7 +2,7 @@ import Logo from '../assets/header-logo.svg';
 
 export function Header() {
   return (
-    <header className='shadow-md py-5 px-10 flex items-center justify-between'>
+    <header className='bg-[#FEFEFE] shadow-md py-5 px-10 flex items-center justify-between fixed top-0 left-0 right-0'>
       <a href="#">
         <img
           src={Logo}

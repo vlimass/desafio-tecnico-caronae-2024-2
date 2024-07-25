@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Logo from '../assets/home-logo.svg';
 import { FilterButton } from './FilterButton';
 import { SearchFilter } from './SearchFilter';
+import { RideCard } from './RideCard';
 
 export function Home() {
   const [isSelected, setIsSelected] = useState<boolean>(true)
@@ -15,7 +16,7 @@ export function Home() {
   }
 
   return (
-    <main className='min-h-screen flex flex-col'>
+    <main className='min-h-screen flex flex-col mt-[83px]'>
       <div className='bg-blue py-16 flex items-center justify-center'>
         <div className='w-[53%] flex flex-col items-center gap-6'>
           <img 
@@ -45,6 +46,15 @@ export function Home() {
 
           <SearchFilter />
         </div>
+
+        <div className='flex items-center flex-wrap gap-6 mt-6'>
+          <RideCard />  
+          <RideCard />  
+          <RideCard />  
+          <RideCard />  
+          <RideCard />  
+        </div>
+
 
       </div>
     </main>
