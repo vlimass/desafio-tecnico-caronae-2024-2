@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Logo from '../assets/home-logo.svg';
 import { FilterButton } from './FilterButton';
+import { SearchFilter } from './SearchFilter';
 
 export function Home() {
   const [isSelected, setIsSelected] = useState<boolean>(true)
@@ -30,18 +31,19 @@ export function Home() {
       </div> 
 
       <div className='flex-grow px-20 py-24'>
-        <div className='flex items-center gap-3'>
-          <FilterButton text='Segunda-feira, 22/07' isSelected={true} />
-
-          <div className='h-11 w-[1px] bg-[#E4E7EC] '/>
-
-          <div onClick={() => handleIsSelected(true)}>
-            <FilterButton text='Chegando na UFRJ' isSelected={isSelected} />
+        <div className='flex items-center justify-between'>
+          <div className='flex items-center gap-3'>
+            <FilterButton text='Segunda-feira, 22/07' isSelected={true} />
+            <div className='h-11 w-[1px] bg-[#E4E7EC] '/>
+            <div onClick={() => handleIsSelected(true)}>
+              <FilterButton text='Chegando na UFRJ' isSelected={isSelected} />
+            </div>
+            <div onClick={() => handleIsSelected(false)}>
+              <FilterButton text='Saindo da UFRJ' isSelected={!isSelected} />
+            </div>
           </div>
 
-          <div onClick={() => handleIsSelected(false)}>
-            <FilterButton text='Saindo da UFRJ' isSelected={!isSelected} />
-          </div>
+          <SearchFilter />
         </div>
 
       </div>
