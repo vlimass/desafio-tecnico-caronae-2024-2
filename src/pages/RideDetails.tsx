@@ -64,7 +64,7 @@ export function RideDetails() {
               </span>
             </div>
           </DetailsCard>
-
+          
 
           <DetailsCard title='Hugo freitas'>
             <div className='flex items-center gap-2'>
