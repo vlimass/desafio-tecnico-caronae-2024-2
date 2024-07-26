@@ -4,8 +4,21 @@ import Flag from '../assets/flag-icon.svg';
 
 import { DetailsCard } from "../components/DetailsCard";
 import { PrimaryButton } from "../components/PrimaryButton";
+import { useLocation } from 'react-router-dom';
+import { Ride } from './Home';
 
 export function RideDetails() {
+  const { state } = useLocation();
+  const ride : Ride = state.ride
+
+  const formatPhoneNumber = (phoneNumber : string) => {
+    const ddd = phoneNumber.substring(0, 2)
+    const firstPart = phoneNumber.substring(2, 7)
+    const secondPart = phoneNumber.substring(7, 11)
+
+    return `(${ddd}) ${firstPart}-${secondPart}`
+  };
+
   return (
     <main className="min-h-main flex flex-col items-center mt-[83px] py-24">
       <div>
@@ -21,7 +34,7 @@ export function RideDetails() {
               <div className='flex items-center justify-between gap-4 mb-3'>
               <div className='flex items-center gap-2'>
                 <span className='font-medium text-sm text-neutral-900'>
-                  Leblon
+                  {ride.local_partida}
                 </span>
                 <img src={Target} alt='Ícone de alvo' height={20}/>
               </div>
@@ -35,16 +48,16 @@ export function RideDetails() {
                 <div className='flex items-center gap-2'>
                   <img src={Flag} alt='Ícone de bandeira' height={20}/>
                   <span className='font-medium text-sm text-neutral-900'>
-                    Fundão
+                    {ride.local_chegada}
                   </span>
                 </div>
               </div>
               <div className='flex items-center justify-between'>
                 <span className='font-semibold text-neutral-900 text-2xl'>
-                  08:00
+                  {ride.horario_partida}
                 </span>
                 <span className='font-semibold text-neutral-900 text-2xl'>
-                  10:00
+                  {ride.horario_chegada}
                 </span>
               </div>
             </>
@@ -60,23 +73,23 @@ export function RideDetails() {
               />
         
               <span className='text-[#17b270] font-semibold'>
-                4 vagas
+                {ride.vagas} vagas
               </span>
             </div>
           </DetailsCard>
           
 
-          <DetailsCard title='Hugo freitas'>
+          <DetailsCard title={ride.motorista.nome}>
             <div className='flex items-center gap-2'>
               <img
-                src="https://s3-alpha-sig.figma.com/img/0dbc/439f/27d076531760843c12071cb3cee5def5?Expires=1722816000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Gf2TYuXpYCtAUsYrSQxFBkyKoL8PSCpq0UxDtPCAAE2io7WNiB202bvY6-UAyHyLECmXI0bEw9j4O2VwRg2P8Yu1yF1f8ci86VhDzqb7FOhVAWFtzv2u07RFnk9YItotFcxzNcPh2ngAE2-vBdAtlpJ6-4x2DtfvHYBIwnHWh7EC1NmQIyBASqOVLNAUGylYs5aPIBwjirk7eiCfv7m9C1wiRy2~-1J8xnQMmiFaCFh2VhXJDrB-graKwduhlXKkF1dTzA2q0ojUA5RBszSyt0R3EurYhOgj~DIRBYbS5YhTDPc1GExPNOZaNg5C9Bx6gQekVzYrD5QqSuAdlO39uA__"
-                alt="Foto Motorista"
+                src={ride.motorista.foto}
+                alt="Foto do Motorista"
                 className="h-14 w-14 rounded-full object-cover"
               />
               <div className='flex flex-col items-start gap-1.5 text-gray text-lg'>
-                <span>Graduando</span>
+                <span>{ride.motorista.situacao}</span>
                 <span>
-                  (21) 0000-00000
+                  {formatPhoneNumber(ride.motorista.telefone)}
                 </span>
               </div>
             </div>
@@ -84,28 +97,28 @@ export function RideDetails() {
 
           <DetailsCard title='Ponto de Encontro'>
             <p className='text-lg text-gray'>
-              Aguardarei próximo ao Shopping e esperarei até 08:15 para todos chegarem e partir.
+              {ride.ponto_encontro}
             </p>
           </DetailsCard>
 
           <DetailsCard title='Informações Adicionais'>
             <p className='text-lg text-gray'>
-              Aguardarei próximo ao Shopping e esperarei até 08:15 para todos chegarem e partir.
+              {ride.observacoes}
             </p>
           </DetailsCard>
 
           <DetailsCard title='Trajeto'>
             <div className='flex items-center gap-3'>
-              <div className='w-[20.82px] h-[81.8px] bg-neutral-900 rounded-[6.9px] p-[9.2px] flex flex-col items-center gap-[9.2px]'>
-                <div className='w-[2.42px] h-[15px] rounded-[1.84px] bg-white'/>
-                <div className='w-[2.42px] h-[15px] rounded-[1.84px] bg-white'/>
-                <div className='w-[2.42px] h-[15px] rounded-[1.84px] bg-white'/>
+              <div className='w-[20.82px] bg-neutral-900 rounded-[6.9px] p-[9.2px] flex flex-col items-center gap-[9.2px]'>
+                {ride.trajeto.split(',').map(() => 
+                  <div className='w-[2.42px] h-[15px] rounded-[1.84px] bg-white'/>
+                )}
               </div>
 
               <div className='flex flex-col justify-between text-lg text-gray'>
-                <span>Botafogo</span>
-                <span>Ipanema</span>
-                <span>Lapa</span>
+                {ride.trajeto.split(',').map(item => 
+                  <span>{item}</span>
+                )}
               </div>
             </div>
           </DetailsCard>

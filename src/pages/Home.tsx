@@ -4,9 +4,9 @@ import { FilterButton } from '../components/FilterButton';
 import { SearchFilter } from '../components/SearchFilter';
 import { RideCard } from '../components/RideCard';
 import { api } from '../lib/axios';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-interface Ride {
+export interface Ride {
   motorista: {
     nome: string,
     situacao: string,
@@ -28,7 +28,7 @@ export function Home() {
   const [rides, setRides] = useState<Ride[]>([])
   const [isArrivingAtUFRJ, setisArrivingAtUFRJ] = useState(true)
   const [searchValue, setSearchValue] = useState('')
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleIsArrivingAtUFRJ = (isArriving : boolean) => {
     if (isArriving) {
@@ -38,13 +38,13 @@ export function Home() {
     }
   }
 
-  // const handleCardClick = (index : number) => {
-  //   navigate(`/details/${rides![index]}`)
-  // }
-
   const handleSearchValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value)
     console.log(searchValue)
+  }
+
+  const handleCardClick = (ride : Ride, index : number) => { 
+    navigate(`/details/${index}`, { state: { ride }})
   }
 
   async function fetchRides() {
@@ -90,7 +90,6 @@ export function Home() {
             value={searchValue}
             setValue={handleSearchValue}
           />
-
         </div>
 
         <div className='flex items-center flex-wrap gap-6 mt-6'>
@@ -110,20 +109,25 @@ export function Home() {
             || ride.horario_chegada.toLowerCase().includes(searchValue.toLowerCase()) 
           )
           .map((ride, index) => 
-            <RideCard 
-              key={index}
-              driver={{
-                name: ride.motorista.nome,
-                profilePhoto: ride.motorista.foto,
-              }}
-              ride={{
-                spaces: ride.vagas,
-                departureLocation: ride.local_partida,
-                arrivalLocation: ride.local_chegada,
-                departureTime: ride.horario_partida,
-                arrivalTime: ride.horario_chegada,
-              }}
-            />  
+            <div
+              className='cursor-pointer hover:bg-zinc-100 hover:rounded-lg hover:transition-all hover:duration-500'
+              onClick={() => handleCardClick(ride, index)}
+            >
+              <RideCard
+                key={index}
+                driver={{
+                  name: ride.motorista.nome,
+                  profilePhoto: ride.motorista.foto,
+                }}
+                ride={{
+                  spaces: ride.vagas,
+                  departureLocation: ride.local_partida,
+                  arrivalLocation: ride.local_chegada,
+                  departureTime: ride.horario_partida,
+                  arrivalTime: ride.horario_chegada,
+                }}
+              />
+            </div>
           )}
         </div>
 

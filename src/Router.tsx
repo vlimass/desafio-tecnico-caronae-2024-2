@@ -8,7 +8,8 @@ export function Router() {
     <Routes>
       <Route path='/' element={<DefaultLayout />} >
         <Route path='/' element={<Home />} />
-        <Route path='/details/:index' element={<RideDetails />} />
+        {/* Usando o index na rota pois as caronas não possuem id */}
+        <Route path='/details/:index' element={<RideDetails />} />  
       </Route>
     </Routes>
   )
