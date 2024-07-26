@@ -1,11 +1,33 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Logo from '../assets/home-logo.svg';
 import { FilterButton } from '../components/FilterButton';
 import { SearchFilter } from '../components/SearchFilter';
 import { RideCard } from '../components/RideCard';
+import { api } from '../lib/axios';
+// import { useNavigate } from 'react-router-dom';
+
+interface Ride {
+  motorista: {
+    nome: string,
+    situacao: string,
+    telefone: string,
+    foto: string
+  };
+  vagas: number;
+  horario_partida: string;
+  horario_chegada: string;
+  local_partida: string;
+  local_chegada: string;
+  ponto_encontro: string;
+  observacoes: string;
+  trajeto: string;
+  indo: boolean;
+}
 
 export function Home() {
   const [isSelected, setIsSelected] = useState<boolean>(true)
+  const [rides, setRides] = useState<Ride[]>([])
+  // const navigate = useNavigate();
 
   const handleIsSelected = (isArrivingAtUFRJ : boolean) => {
     if (isArrivingAtUFRJ) {
@@ -14,6 +36,20 @@ export function Home() {
       setIsSelected(false)
     }
   }
+
+  // const handleCardClick = (index : number) => {
+  //   navigate(`/details/${rides![index]}`)
+  // }
+
+  async function fetchRides() {
+    const response = await api.get('/753cf50d-4bec-427f-bd07-e49387240ee3')
+
+    setRides(response.data.caronas)
+  }
+
+  useEffect(() => {
+    fetchRides()
+  }, [])
 
   return (
     <main className='min-h-main flex flex-col mt-[83px]'>
@@ -48,13 +84,23 @@ export function Home() {
         </div>
 
         <div className='flex items-center flex-wrap gap-6 mt-6'>
-          <RideCard />  
-          <RideCard />  
-          <RideCard />  
-          <RideCard />  
-          <RideCard />  
+          {rides.map((ride, index) => 
+            <RideCard 
+              key={index}
+              driver={{
+                name: ride.motorista.nome,
+                profilePhoto: ride.motorista.foto,
+              }}
+              ride={{
+                spaces: ride.vagas,
+                departureLocation: ride.local_partida,
+                arrivalLocation: ride.local_chegada,
+                departureTime: ride.horario_partida,
+                arrivalTime: ride.horario_chegada,
+              }}
+            />  
+          )}
         </div>
-
 
       </div>
     </main>

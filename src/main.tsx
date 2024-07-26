@@ -1,14 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { Header } from './components/Header.tsx'
 import './index.css'
-import { RideDetails } from './pages/RideDetails.tsx'
-// import { Home } from './pages/Home.tsx'
+import { BrowserRouter } from 'react-router-dom'
+import { Router } from './Router.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Header />
-    {/* <Home /> */}
-    <RideDetails />
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
   </React.StrictMode>,
 )
