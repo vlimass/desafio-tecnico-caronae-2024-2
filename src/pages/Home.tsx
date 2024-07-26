@@ -25,15 +25,15 @@ interface Ride {
 }
 
 export function Home() {
-  const [isSelected, setIsSelected] = useState<boolean>(true)
+  const [isArrivingAtUFRJ, setisArrivingAtUFRJ] = useState<boolean>(true)
   const [rides, setRides] = useState<Ride[]>([])
   // const navigate = useNavigate();
 
-  const handleIsSelected = (isArrivingAtUFRJ : boolean) => {
-    if (isArrivingAtUFRJ) {
-      setIsSelected(true)
+  const handleIsArrivingAtUFRJ = (isArriving : boolean) => {
+    if (isArriving) {
+      setisArrivingAtUFRJ(true)      
     } else {
-      setIsSelected(false)
+      setisArrivingAtUFRJ(false)
     }
   }
 
@@ -72,11 +72,11 @@ export function Home() {
           <div className='flex items-center gap-3'>
             <FilterButton text='Segunda-feira, 22/07' isSelected={true} />
             <div className='h-11 w-[1px] bg-[#E4E7EC] '/>
-            <div onClick={() => handleIsSelected(true)}>
-              <FilterButton text='Chegando na UFRJ' isSelected={isSelected} />
+            <div onClick={() => handleIsArrivingAtUFRJ(true)}>
+              <FilterButton text='Chegando na UFRJ' isSelected={isArrivingAtUFRJ} />
             </div>
-            <div onClick={() => handleIsSelected(false)}>
-              <FilterButton text='Saindo da UFRJ' isSelected={!isSelected} />
+            <div onClick={() => handleIsArrivingAtUFRJ(false)}>
+              <FilterButton text='Saindo da UFRJ' isSelected={!isArrivingAtUFRJ} />
             </div>
           </div>
 
@@ -84,7 +84,14 @@ export function Home() {
         </div>
 
         <div className='flex items-center flex-wrap gap-6 mt-6'>
-          {rides.map((ride, index) => 
+          {rides
+          .filter(ride => {
+            if(isArrivingAtUFRJ) {
+              return ride.local_chegada === 'Fundão'
+            } else {
+              return ride.local_chegada !== 'Fundão'
+            }})
+          .map((ride, index) => 
             <RideCard 
               key={index}
               driver={{
