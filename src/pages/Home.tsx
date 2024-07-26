@@ -25,8 +25,9 @@ interface Ride {
 }
 
 export function Home() {
-  const [isArrivingAtUFRJ, setisArrivingAtUFRJ] = useState<boolean>(true)
   const [rides, setRides] = useState<Ride[]>([])
+  const [isArrivingAtUFRJ, setisArrivingAtUFRJ] = useState(true)
+  const [searchValue, setSearchValue] = useState('')
   // const navigate = useNavigate();
 
   const handleIsArrivingAtUFRJ = (isArriving : boolean) => {
@@ -40,6 +41,11 @@ export function Home() {
   // const handleCardClick = (index : number) => {
   //   navigate(`/details/${rides![index]}`)
   // }
+
+  const handleSearchValue = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value)
+    console.log(searchValue)
+  }
 
   async function fetchRides() {
     const response = await api.get('/753cf50d-4bec-427f-bd07-e49387240ee3')
@@ -80,7 +86,11 @@ export function Home() {
             </div>
           </div>
 
-          <SearchFilter />
+          <SearchFilter
+            value={searchValue}
+            setValue={handleSearchValue}
+          />
+
         </div>
 
         <div className='flex items-center flex-wrap gap-6 mt-6'>
@@ -91,6 +101,14 @@ export function Home() {
             } else {
               return ride.local_chegada !== 'Fundão'
             }})
+          .filter(ride => 
+            ride.motorista.nome.toLowerCase().includes(searchValue.toLowerCase()) 
+            || ride.vagas.toString().includes(searchValue) 
+            || ride.local_partida.toLowerCase().includes(searchValue.toLowerCase()) 
+            || ride.local_chegada.toLowerCase().includes(searchValue.toLowerCase()) 
+            || ride.horario_partida.toLowerCase().includes(searchValue.toLowerCase()) 
+            || ride.horario_chegada.toLowerCase().includes(searchValue.toLowerCase()) 
+          )
           .map((ride, index) => 
             <RideCard 
               key={index}
