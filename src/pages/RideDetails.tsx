@@ -1,6 +1,8 @@
 import { dateFormatted } from '../utils/dateFormatted';
 
-import People from '../assets/people-icon.svg';
+import PeopleGreen from '../assets/people-green-icon.svg'
+import PeopleOrange from '../assets/people-orange-icon.svg';
+import PeopleRed from '../assets/people-red-icon.svg';
 import Target from '../assets/target-icon.svg';
 import Flag from '../assets/flag-icon.svg';
 
@@ -62,13 +64,30 @@ export function RideDetails() {
           <DetailsCard title='Vagas disponíveis'>
             <div className='flex items-center gap-2'>
               <img
-                src={People}
+                src={
+                  ride.vagas === 0 
+                  ? PeopleRed
+                  : ride.vagas <= 2 
+                  ? PeopleOrange
+                  : PeopleGreen
+                }
                 alt='Ícone de pessoas'
                 height={20}
               />
         
-              <span className='text-[#17b270] font-semibold'>
-                {ride.vagas} vagas
+              <span 
+                className={`font-semibold
+                  ${ride.vagas === 0 
+                    ? 'text-[#EB3D38]'
+                    : ride.vagas <= 2 
+                    ? 'text-[#ED8024]'
+                    : 'text-[#17b270]'}
+                `}
+              >
+                {ride.vagas === 0 
+                  ? 'Lotado'
+                  : ride.vagas + ' vagas'
+                }
               </span>
             </div>
           </DetailsCard>

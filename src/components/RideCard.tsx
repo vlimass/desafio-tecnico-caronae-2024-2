@@ -1,4 +1,6 @@
-import People from '../assets/people-icon.svg';
+import PeopleGreen from '../assets/people-green-icon.svg';
+import PeopleOrange from '../assets/people-orange-icon.svg';
+import PeopleRed from '../assets/people-red-icon.svg';
 import Target from '../assets/target-icon.svg';
 import Flag from '../assets/flag-icon.svg';
 
@@ -32,13 +34,30 @@ export function RideCard(props: RideCardProps) {
         </div>
         <div className='flex items-center gap-2'>
           <img
-            src={People}
+            src={
+              props.ride.spaces === 0 
+              ? PeopleRed
+              : props.ride.spaces <= 2 
+              ? PeopleOrange
+              : PeopleGreen
+            }
             alt='Ícone de pessoas'
             height={20}
           />
     
-          <span className='text-[#17b270] font-semibold'>
-            {props.ride.spaces}
+          <span 
+            className={`font-semibold
+              ${props.ride.spaces === 0 
+                ? 'text-[#EB3D38]'
+                : props.ride.spaces <= 2 
+                ? 'text-[#ED8024]'
+                : 'text-[#17b270]'}
+            `}
+          >
+            {props.ride.spaces === 0 
+              ? 'Lotado'
+              : props.ride.spaces
+            }
           </span>
         </div>
       </div>
