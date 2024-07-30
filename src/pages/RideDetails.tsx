@@ -1,3 +1,5 @@
+import { dateFormatted } from '../utils/dateFormatted';
+
 import People from '../assets/people-icon.svg';
 import Target from '../assets/target-icon.svg';
 import Flag from '../assets/flag-icon.svg';
@@ -6,25 +8,18 @@ import { DetailsCard } from "../components/DetailsCard";
 import { PrimaryButton } from "../components/PrimaryButton";
 import { useLocation } from 'react-router-dom';
 import { Ride } from './Home';
+import { formatPhoneNumber } from '../utils/formatPhoneNumber';
 
-export function RideDetails() {
+export function RideDetails() { 
   const { state } = useLocation();
   const ride : Ride = state.ride
-
-  const formatPhoneNumber = (phoneNumber : string) => {
-    const ddd = phoneNumber.substring(0, 2)
-    const firstPart = phoneNumber.substring(2, 7)
-    const secondPart = phoneNumber.substring(7, 11)
-
-    return `(${ddd}) ${firstPart}-${secondPart}`
-  };
 
   return (
     <main className="min-h-main flex flex-col items-center mt-[83px] py-24">
       <div>
         <div className="flex items-center justify-between">
           <span className="font-semibold text-3xl text-blue">
-            Segunda-feira, 22/07
+            {dateFormatted}
           </span>
           <PrimaryButton text="Pedir Carona"/>
         </div>

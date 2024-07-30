@@ -1,10 +1,13 @@
-import { useEffect, useState } from 'react';
-import Logo from '../assets/home-logo.svg';
-import { FilterButton } from '../components/FilterButton';
-import { SearchFilter } from '../components/SearchFilter';
-import { RideCard } from '../components/RideCard';
 import { api } from '../lib/axios';
+import { dateFormatted } from '../utils/dateFormatted';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import Logo from '../assets/home-logo.svg';
+
+import { SearchFilter } from '../components/SearchFilter';
+import { FilterButton } from '../components/FilterButton';
+import { RideCard } from '../components/RideCard';
 
 export interface Ride {
   motorista: {
@@ -76,7 +79,7 @@ export function Home() {
       <div className='flex-grow px-20 py-24'>
         <div className='flex items-center justify-between'>
           <div className='flex items-center gap-3'>
-            <FilterButton text='Segunda-feira, 22/07' isSelected={true} />
+            <FilterButton text={dateFormatted} isSelected={true} />
             <div className='h-11 w-[1px] bg-[#E4E7EC] '/>
             <div onClick={() => handleIsArrivingAtUFRJ(true)}>
               <FilterButton text='Chegando na UFRJ' isSelected={isArrivingAtUFRJ} />
