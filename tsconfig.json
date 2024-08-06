@@ -1,9 +1,12 @@
 {
   "compilerOptions": {
+    "target": "ES2022",
     "types": ["vitest/globals"],
     "jsx": "react-jsx", 
     "esModuleInterop": true,
     "noEmit": true,
-    "allowImportingTsExtensions": true
+    "allowImportingTsExtensions": true,
+    "module": "ES2022",
+    "moduleResolution": "Bundler"
   }
 }
