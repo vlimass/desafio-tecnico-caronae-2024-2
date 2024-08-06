@@ -36,9 +36,11 @@ Por fim, basta executar o comando `docker run` para rodar o container Docker ref
 docker run -d --name desafio-tecnico-caronae -p 5173:5173 desafio-tecnico-caronae
 ```
 
-Tudo pronto! Sua aplicação front-end *Desafio Técnico Caronaê* já está rodando e você pode acessá-la através de seu navegador em http://localhost:5173/.
+Tudo pronto! Sua aplicação front-end *Desafio Técnico Caronaê* já está rodando e você pode acessá-la através de seu navegador em http://localhost:5173.
 
 ### 📸 Preview do projeto
+
+![](https://github.com/vlimass/desafio-tecnico-caronae-2024-2/blob/main/images/preview.gif)
 
 <hr>
 <div align="center">made with 🤍 by viny</div>
