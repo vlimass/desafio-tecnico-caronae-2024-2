@@ -1,6 +1,6 @@
 # Desafio Técnico Caronaê
 
-Este projeto trata-se do desafio técnico desenvolvido durante o processo seletivo da extensão **Caronaê da UFRJ**, responsável pela construção de uma aplicativo de caronas solidárias para o campus do Fundão. O objetivo foi criar uma aplicação web front-end que consumisse os dados da API Rest, disponibilizada em [https://mocki.io/v1/753cf50d-4bec-427f-bd07-e49387240ee3](https://mocki.io/v1/753cf50d-4bec-427f-bd07-e49387240ee3). A aplicação desenvolvida foi publicada e pode ser acessada em [https://desafio-tecnico-caronae-2024-2.vercel.app/](https://desafio-tecnico-caronae-2024-2.vercel.app/).
+Este projeto trata-se do desafio técnico desenvolvido durante o processo seletivo da extensão **Caronaê**, responsável pela construção de uma aplicativo de caronas solidárias para a UFRJ. O objetivo foi criar uma aplicação web front-end que consumisse os dados da API Rest, disponibilizada pelo [link](https://mocki.io/v1/753cf50d-4bec-427f-bd07-e49387240ee3). A aplicação final desenvolvida foi publicada e pode ser acessada em [https://desafio-tecnico-caronae-2024-2.vercel.app/](https://desafio-tecnico-caronae-2024-2.vercel.app/).
 
 ### 🛠 Tecnologias utilizadas
 
@@ -36,7 +36,7 @@ Por fim, basta executar o comando `docker run` para rodar o container Docker ref
 docker run -d --name desafio-tecnico-caronae -p 5173:5173 desafio-tecnico-caronae
 ```
 
-Tudo pronto! Sua aplicação front-end `Desafio Técnico Caronaê` já está rodando e você pode acessá-la através de seu navegador em http://localhost:5173/.
+Tudo pronto! Sua aplicação front-end *Desafio Técnico Caronaê* já está rodando e você pode acessá-la através de seu navegador em http://localhost:5173/.
 
 ### 📸 Preview do projeto
 
