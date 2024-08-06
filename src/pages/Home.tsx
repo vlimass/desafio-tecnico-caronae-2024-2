@@ -43,7 +43,6 @@ export function Home() {
 
   const handleSearchValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value)
-    console.log(searchValue)
   }
 
   const handleCardClick = (ride : Ride, index : number) => { 
